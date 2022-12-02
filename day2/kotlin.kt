@@ -11,34 +11,33 @@ val wantedOutcome = mapOf("Z" to "win", "Y" to "draw", "X" to "lose")
 
 fun evalPart1(input: String): Int {
     var reuslt = 0
-    val (opponent,player) = input.split(" ")
-    val playerMove = playerValues[player]
-    val opponentMove = opponentValues[opponent]
-    val outcome = part1Map[opponentMove + playerMove]
-    reuslt += (outcomeValues[outcome]!!) + (play_values[playerMove]!!)
+    val (o,p) = input.split(" ")
+    val pM = playerValues[p]
+    val oM = opponentValues[o]
+    val re = part1Map[oM + pM]
+    reuslt += (outcomeValues[re]!!) + (play_values[pM]!!)
     return reuslt
 }
 
 fun evalPart2(input: String): Int {
     var reuslt = 0
-    val (opponent,outcome) = input.split(" ")
-    val opponentMove = opponentValues[opponent]
-    val outcome_wanted = wantedOutcome[outcome]
-    val played = part2Map[opponentMove + outcome_wanted]
-    reuslt += (play_values[played]!!) + (outcomeValues[outcome_wanted]!!)
+    val (o,r) = input.split(" ")
+    val oM = opponentValues[o]
+    val re = wantedOutcome[r]
+    val pM = part2Map[oM + re]
+    reuslt += (play_values[pM]!!) + (outcomeValues[re]!!)
     return reuslt
 }
 
-
 fun main() {
     val lines = File("input_data.txt").readLines()
-    var total1 = 0
-    var total2 = 0
+    var t1 = 0
+    var t2 = 0
     for (line in lines) {
-        total1 += evalPart1(line)
-        total2 += evalPart2(line)
+        t1 += evalPart1(line)
+        t2 += evalPart2(line)
     }
-    println("Part 1: $total1")
-    println("Part 2: $total2")
+    println("Part 1: $t1")
+    println("Part 2: $t2")
 }
 
